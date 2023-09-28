@@ -9,6 +9,8 @@ import recipes.dto.RecipeResponse;
 import recipes.entity.Recipe;
 import recipes.service.RecipeService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class RecipeController {
@@ -25,7 +27,12 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/new")
-    public RecipeAddedResponse addRecipe(@RequestBody Recipe recipe) {
+    public RecipeAddedResponse addRecipe(@Valid @RequestBody Recipe recipe) {
         return recipeService.addRecipe(recipe);
+    }
+
+    @DeleteMapping("/recipe/{id}")
+    public ResponseEntity deleteRecipe(@PathVariable("id") Long id) {
+        return recipeService.deleteRecipe(id);
     }
 }

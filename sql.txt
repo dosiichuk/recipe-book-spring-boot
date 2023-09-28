@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS INGREDIENT
+                    (ID INT AUTO_INCREMENT,
+                    NAME VARCHAR(255) UNIQUE NOT NULL,
+                    RECIPE_ID INT,
+                    POSITION INT,
+                    PRIMARY KEY (ID),
+                    FOREIGN KEY (RECIPE_ID) REFERENCES RECIPE(ID)
+                    ON DELETE CASCADE);
+
+
+CREATE TABLE IF NOT EXISTS RECIPE_INGREDIENTS
+                    (INGREDIENTS_ID INT,
+                    RECIPE_ID INT,
+                    POSITION INT,
+                    FOREIGN KEY (RECIPE_ID) REFERENCES RECIPE(ID)
+                    ON DELETE CASCADE,
+ FOREIGN KEY (INGREDIENTS_ID) REFERENCES INGREDIENT(ID)
+                    ON DELETE CASCADE);
